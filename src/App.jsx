@@ -6,7 +6,7 @@ import Login from "./components/Login";
 import MyProperties from "./components/MyProperties";
 import AddProperty from "./components/AddProperty";
 import Footer from "./components/Footer";
-import Signup from "./components/signup";
+import Signup from "./components/Signup";
 
 export default function App() {
 

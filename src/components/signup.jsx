@@ -1,9 +1,9 @@
 // Signup.jsx
 
 import React from "react";
-import "./signup.css";
+import "./Signup.css";
 import { Link } from "react-router-dom";
-import MobileMenu from "../components/MobileMenu";
+import MobileMenu from "./MobileMenu";
 
 export default function Signup() {
 
