@@ -1,7 +1,7 @@
 // Signup.jsx
 
 import React from "react";
-import "./Signup.css";
+import "./signup.css";
 import { Link } from "react-router-dom";
 import MobileMenu from "../components/MobileMenu";
 
