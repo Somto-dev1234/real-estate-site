@@ -1,9 +1,17 @@
 import React from "react";
 import "./Footer.css";
+import { Link } from "react-router-dom";
 
 import logoImg from "../assets/logo.png";
 
 export default function Footer() {
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   return (
 
@@ -15,9 +23,7 @@ export default function Footer() {
 
         <div className="footer-col">
 
-          <h3>
-            Contact Us
-          </h3>
+          <h3>Contact Us</h3>
 
           <p>
             📍 329 Queensberry Street,
@@ -25,31 +31,19 @@ export default function Footer() {
             Australia.
           </p>
 
-          <p>
-            ☎ 123 456 7890
-          </p>
+          <p>☎ 123 456 7890</p>
 
-          <p>
-            ✉ support@houzing.com
-          </p>
+          <p>✉ support@houzing.com</p>
 
           <div className="footer-socials">
 
-            <a href="/">
-              f
-            </a>
+            <a href="#" onClick={(e)=>e.preventDefault()}>f</a>
 
-            <a href="/">
-              t
-            </a>
+            <a href="#" onClick={(e)=>e.preventDefault()}>t</a>
 
-            <a href="/">
-              ◎
-            </a>
+            <a href="#" onClick={(e)=>e.preventDefault()}>◎</a>
 
-            <a href="/">
-              in
-            </a>
+            <a href="#" onClick={(e)=>e.preventDefault()}>in</a>
 
           </div>
 
@@ -59,25 +53,15 @@ export default function Footer() {
 
         <div className="footer-col">
 
-          <h3>
-            Discover
-          </h3>
+          <h3>Discover</h3>
 
-          <a href="/">
-            Chicago
-          </a>
+          <Link to="/">Chicago</Link>
 
-          <a href="/">
-            Los Angeles
-          </a>
+          <Link to="/">Los Angeles</Link>
 
-          <a href="/">
-            Miami
-          </a>
+          <Link to="/">Miami</Link>
 
-          <a href="/">
-            New York
-          </a>
+          <Link to="/">New York</Link>
 
         </div>
 
@@ -85,33 +69,19 @@ export default function Footer() {
 
         <div className="footer-col">
 
-          <h3>
-            Lists By Category
-          </h3>
+          <h3>Lists By Category</h3>
 
-          <a href="/">
-            Apartments
-          </a>
+          <Link to="/properties">Apartments</Link>
 
-          <a href="/">
-            Condos
-          </a>
+          <Link to="/properties">Condos</Link>
 
-          <a href="/">
-            Houses
-          </a>
+          <Link to="/properties">Houses</Link>
 
-          <a href="/">
-            Offices
-          </a>
+          <Link to="/properties">Offices</Link>
 
-          <a href="/">
-            Retail
-          </a>
+          <Link to="/properties">Retail</Link>
 
-          <a href="/">
-            Villas
-          </a>
+          <Link to="/properties">Villas</Link>
 
         </div>
 
@@ -119,25 +89,15 @@ export default function Footer() {
 
         <div className="footer-col">
 
-          <h3>
-            Lists By Category
-          </h3>
+          <h3>Quick Links</h3>
 
-          <a href="/">
-            About Us
-          </a>
+          <Link to="/">About Us</Link>
 
-          <a href="/">
-            Terms & Conditions
-          </a>
+          <Link to="/">Terms & Conditions</Link>
 
-          <a href="/">
-            Support Center
-          </a>
+          <Link to="/">Support Center</Link>
 
-          <a href="/">
-            Contact Us
-          </a>
+          <Link to="/">Contact Us</Link>
 
         </div>
 
@@ -151,21 +111,23 @@ export default function Footer() {
 
           <img
             src={logoImg}
-            alt=""
+            alt="Houzing Logo"
           />
 
-          <h2>
-            Houzing
-          </h2>
+          <h2>Houzing</h2>
 
         </div>
 
         <p>
           Copyright © 2026 CreativeLayers.
-          All Right Reserved.
+          All Rights Reserved.
         </p>
 
-        <button className="footer-top-btn">
+        <button
+          className="footer-top-btn"
+          onClick={scrollToTop}
+          title="Back to Top"
+        >
           ↑
         </button>
 
