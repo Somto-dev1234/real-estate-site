@@ -1,8 +1,8 @@
 // Hero.jsx
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./Hero.css";
 import { Link } from "react-router-dom";
-
+import { motion, AnimatePresence } from "framer-motion";
 import heroImg from "../assets/hero.jpg";
 import logoImg from "../assets/logo.png";
 import contactIcon from "../assets/Vector@2x.png";
@@ -13,6 +13,10 @@ import houseImg from "../assets/house.jpg";
 import apartmentImg from "../assets/apartment.jpg";
 import officeImg from "../assets/office.jpg";
 import villaImg from "../assets/villa.jpg";
+import trustedIcon from "../assets/trusted.png";
+import propertyIcon from "../assets/property.png";
+import financeIcon from "../assets/finance.png";
+import locationIcon from "../assets/location.png";
 
 export default function Hero() {
 
@@ -30,6 +34,54 @@ export default function Hero() {
 
   const [activeCategory, setActiveCategory] =
     useState(null);
+    // TESTIMONIALS
+
+const testimonials = [
+  {
+    text: "I believe in lifelong learning and Houzing is a great place to learn from experts.",
+    image: houseImg,
+    name: "Marvin McKinney",
+    role: "Designer",
+  },
+  {
+    text: "Amazing properties and smooth customer service experience.",
+    image: villaImg,
+    name: "Sarah Johnson",
+    role: "Architect",
+  },
+  {
+    text: "Professional agents and beautiful homes everywhere.",
+    image: officeImg,
+    name: "Daniel Smith",
+    role: "Engineer",
+  },
+  {
+    text: "Best real estate platform I have ever used online.",
+    image: apartmentImg,
+    name: "Jessica Brown",
+    role: "Entrepreneur",
+  },
+];
+
+const [activeIndex, setActiveIndex] = useState(0);
+
+useEffect(() => {
+  const timer = setInterval(() => {
+    setActiveIndex((prev) => (prev + 1) % testimonials.length);
+  }, 3500);
+
+  return () => clearInterval(timer);
+}, []);
+
+const nextSlide = () => {
+  setActiveIndex((prev) => (prev + 1) % testimonials.length);
+};
+
+const prevSlide = () => {
+  setActiveIndex((prev) =>
+    prev === 0 ? testimonials.length - 1 : prev - 1
+  );
+};
 
   return (
 
@@ -285,90 +337,108 @@ export default function Hero() {
 
       {/* ================= WHY CHOOSE US ================= */}
 
-      <section className="why-section">
+  <section className="why-section">
 
-        <div className="why-top">
+  <div className="why-top">
 
-          <h2>
-            Why Choose Us?
-          </h2>
+    <h2>Why Choose Us?</h2>
 
-          <p>
-            Nulla quis curabitur velit volutpat auctor bibendum consectetur sit.
-          </p>
+    <p>
+      Nulla quis curabitur velit volutpat auctor bibendum consectetur sit.
+    </p>
 
-        </div>
+  </div>
 
-        <div className="why-grid">
+  <div className="why-grid">
 
-          <div className="why-card">
+    {/* CARD 1 */}
 
-            <div className="why-icon">
-              😊
-            </div>
+    <div className="why-card">
 
-            <h3>
-              Trusted By Thousands
-            </h3>
+      <div className="why-icon">
 
-            <p>
-              With over 1 million+ homes for sale available on the website,
-              Houzing can match you with a house you will want to call home.
-            </p>
+        <img
+          src={trustedIcon}
+          alt="Trusted"
+        />
 
-          </div>
+      </div>
 
-          <div className="why-card">
+      <h3>Trusted By Thousands</h3>
 
-            <div className="why-icon">
-              🏠
-            </div>
+      <p>
+        With over 1 million+ homes for sale available on the website,
+        Houzing can match you with a house you will want to call home.
+      </p>
 
-            <h3>
-              Wide Range Of Properties
-            </h3>
+    </div>
 
-            <p>
-              Explore apartments, villas, duplexes and luxury homes in different locations.
-            </p>
+    {/* CARD 2 */}
 
-          </div>
+    <div className="why-card">
 
-          <div className="why-card">
+      <div className="why-icon">
 
-            <div className="why-icon">
-              💰
-            </div>
+        <img
+          src={propertyIcon}
+          alt="Properties"
+        />
 
-            <h3>
-              Financing Made Easy
-            </h3>
+      </div>
 
-            <p>
-              We make it simple to find properties that fit your budget and lifestyle.
-            </p>
+      <h3>Wide Range Of Properties</h3>
 
-          </div>
+      <p>
+        Explore apartments, villas, duplexes and luxury homes in different locations.
+      </p>
 
-          <div className="why-card">
+    </div>
 
-            <div className="why-icon">
-              📍
-            </div>
+    {/* CARD 3 */}
 
-            <h3>
-              See Neighborhoods
-            </h3>
+    <div className="why-card">
 
-            <p>
-              Discover nearby schools, parks, shopping centers and amazing communities.
-            </p>
+      <div className="why-icon">
 
-          </div>
+        <img
+          src={financeIcon}
+          alt="Finance"
+        />
 
-        </div>
+      </div>
 
-      </section>
+      <h3>Financing Made Easy</h3>
+
+      <p>
+        We make it simple to find properties that fit your budget and lifestyle.
+      </p>
+
+    </div>
+
+    {/* CARD 4 */}
+
+    <div className="why-card">
+
+      <div className="why-icon">
+
+        <img
+          src={locationIcon}
+          alt="Location"
+        />
+
+      </div>
+
+      <h3>See Neighborhoods</h3>
+
+      <p>
+        Discover nearby schools, parks, shopping centers and amazing communities.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
 
       {/* ================= CATEGORY SECTION ================= */}
 
@@ -817,217 +887,75 @@ export default function Hero() {
 <section className="testimonial-section">
 
   <div className="testimonial-top">
+    <h2>Testimonials</h2>
+    <p>What our happy clients say about us</p>
+  </div>
 
-    <h2>
-      Testimonials
-    </h2>
+  <div className="testimonial-slider">
 
-    <p>
-      What our happy clients say about us
-    </p>
+    <button
+      className="testimonial-arrow"
+      onClick={prevSlide}
+    >
+      ❮
+    </button>
+
+    <div className="testimonial-track">
+
+      {testimonials.map((item, index) => {
+
+        let position = index - activeIndex;
+
+        if (position < -1)
+          position += testimonials.length;
+
+        if (position > 2)
+          position -= testimonials.length;
+
+        return (
+
+          <div
+            key={index}
+            className={`testimonial-card ${
+              position === 0 ? "active" : ""
+            }`}
+            style={{
+              transform: `translateX(${position * 360}px)
+                          scale(${position === 0 ? 1 : 0.88})`,
+              opacity: position === 0 ? 1 : 0.45,
+              zIndex: position === 0 ? 5 : 1,
+            }}
+          >
+
+            <p>"{item.text}"</p>
+
+            <img
+              src={item.image}
+              alt=""
+            />
+
+            <h4>{item.name}</h4>
+
+            <span>{item.role}</span>
+
+          </div>
+
+        );
+
+      })}
+
+    </div>
+
+    <button
+      className="testimonial-arrow"
+      onClick={nextSlide}
+    >
+      ❯
+    </button>
 
   </div>
 
-  {/* CREATE REF */}
-
-  {(() => {
-
-    const testimonialRef = useRef(null);
-
-    return (
-
-      <div className="testimonial-wrapper">
-
-        {/* LEFT BUTTON */}
-
-        <button
-          className="testimonial-arrow left"
-          onClick={() =>
-            testimonialRef.current.scrollBy({
-              left: -380,
-              behavior: "smooth",
-            })
-          }
-        >
-          ❮
-        </button>
-
-        {/* SLIDER */}
-
-        <div
-          className="testimonial-slider"
-          ref={testimonialRef}
-        >
-
-          {/* CARD 1 */}
-
-          <div className="testimonial-card">
-
-            <p>
-              "I believe in lifelong learning and
-              Houzing is a great place to learn from
-              experts."
-            </p>
-
-            <img
-              src={houseImg}
-              alt=""
-            />
-
-            <h4>
-              Marvin McKinney
-            </h4>
-
-            <span>
-              Designer
-            </span>
-
-          </div>
-
-          {/* CARD 2 */}
-
-          <div className="testimonial-card">
-
-            <p>
-              "Amazing properties and smooth
-              customer service experience."
-            </p>
-
-            <img
-              src={villaImg}
-              alt=""
-            />
-
-            <h4>
-              Sarah Johnson
-            </h4>
-
-            <span>
-              Architect
-            </span>
-
-          </div>
-
-          {/* CARD 3 */}
-
-          <div className="testimonial-card">
-
-            <p>
-              "Professional agents and beautiful
-              homes everywhere."
-            </p>
-
-            <img
-              src={officeImg}
-              alt=""
-            />
-
-            <h4>
-              Daniel Smith
-            </h4>
-
-            <span>
-              Engineer
-            </span>
-
-          </div>
-
-          {/* CARD 4 */}
-
-          <div className="testimonial-card">
-
-            <p>
-              "Best real estate platform I have
-              ever used online."
-            </p>
-
-            <img
-              src={apartmentImg}
-              alt=""
-            />
-
-            <h4>
-              Jessica Brown
-            </h4>
-
-            <span>
-              Entrepreneur
-            </span>
-
-          </div>
-
-          {/* CARD 5 */}
-
-          <div className="testimonial-card">
-
-            <p>
-              "Houzing helped my family find
-              our dream home quickly."
-            </p>
-
-            <img
-              src={houseImg}
-              alt=""
-            />
-
-            <h4>
-              Michael Lee
-            </h4>
-
-            <span>
-              Businessman
-            </span>
-
-          </div>
-
-          {/* CARD 6 */}
-
-          <div className="testimonial-card">
-
-            <p>
-              "Beautiful apartments and amazing
-              customer support team."
-            </p>
-
-            <img
-              src={villaImg}
-              alt=""
-            />
-
-            <h4>
-              Olivia Wilson
-            </h4>
-
-            <span>
-              Developer
-            </span>
-
-          </div>
-
-        </div>
-
-        {/* RIGHT BUTTON */}
-
-        <button
-          className="testimonial-arrow right"
-          onClick={() =>
-            testimonialRef.current.scrollBy({
-              left: 380,
-              behavior: "smooth",
-            })
-          }
-        >
-          ❯
-        </button>
-
-      </div>
-
-    );
-
-  })()}
-
 </section>
-
     </>
 
   );
