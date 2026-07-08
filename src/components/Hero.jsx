@@ -140,7 +140,7 @@ const prevSlide = () => {
           <div className="nav-right">
 
             <Link
-              to="/login"
+              to="/signup"
               className="login-btn"
             >
 
