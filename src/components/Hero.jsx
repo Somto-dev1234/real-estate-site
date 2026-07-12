@@ -3,6 +3,12 @@ import React, { useState, useRef, useEffect } from "react";
 import "./Hero.css";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import {
+  FaHome,
+  FaBuilding,
+  FaBriefcase,
+  FaHouseUser,
+} from "react-icons/fa";
 import heroImg from "../assets/hero.jpg";
 import logoImg from "../assets/logo.png";
 import contactIcon from "../assets/Vector@2x.png";
@@ -17,6 +23,7 @@ import trustedIcon from "../assets/trusted.png";
 import propertyIcon from "../assets/property.png";
 import financeIcon from "../assets/finance.png";
 import locationIcon from "../assets/location.png";
+
 
 export default function Hero() {
 
@@ -442,282 +449,277 @@ const prevSlide = () => {
 
       {/* ================= CATEGORY SECTION ================= */}
 
-      <section className="category-section">
+   <section className="category-section">
 
-        <div className="category-top">
+  <div className="category-top">
 
-          <h2>
-            Category
-          </h2>
+    <h2>
+      Category
+    </h2>
 
-          <p>
-            Choose your preferred property type
-          </p>
+    <p>
+      Choose your preferred property type
+    </p>
+
+  </div>
+
+  <div className="category-slider">
+
+    {/* HOUSE */}
+
+    <div className="category-box">
+
+      <div
+        className="category-card"
+        style={{
+          backgroundImage: `url(${houseImg})`,
+        }}
+        onClick={() =>
+          setActiveCategory(
+            activeCategory === "house"
+              ? null
+              : "house"
+          )
+        }
+      >
+
+        <div className="category-overlay">
+
+          <div className="category-icon">
+            <FaHome />
+          </div>
+
+          <h3>
+            House
+          </h3>
 
         </div>
 
-        <div className="category-slider">
+      </div>
 
-          {/* HOUSE */}
+      {activeCategory === "house" && (
 
-          <div className="category-box">
+        <div className="property-popup active-popup">
 
-            <div
-              className="category-card"
-              style={{
-                backgroundImage: `url(${houseImg})`,
-              }}
+          <div className="popup-property">
 
-              onClick={() =>
-                setActiveCategory(
-                  activeCategory === "house"
-                    ? null
-                    : "house"
-                )
-              }
-            >
+            <img
+              src={houseImg}
+              alt="House"
+            />
 
-              <div className="category-overlay">
+            <h4>
+              Modern Family House
+            </h4>
 
-                <div className="category-icon">
-                  🏠
-                </div>
+            <p>
+              $4,500/mo
+            </p>
 
-                <h3>
-                  House
-                </h3>
-
-              </div>
-
-            </div>
-
-            {activeCategory === "house" && (
-
-              <div className="property-popup active-popup">
-
-                <div className="popup-property">
-
-                  <img
-                    src={houseImg}
-                    alt=""
-                  />
-
-                  <h4>
-                    Modern Family House
-                  </h4>
-
-                  <p>
-                    $4,500/mo
-                  </p>
-
-                  <a href="#contact-section">
-                    Choose Property
-                  </a>
-
-                </div>
-
-              </div>
-
-            )}
-
-          </div>
-
-          {/* APARTMENT */}
-
-          <div className="category-box">
-
-            <div
-              className="category-card"
-              style={{
-                backgroundImage: `url(${apartmentImg})`,
-              }}
-
-              onClick={() =>
-                setActiveCategory(
-                  activeCategory === "apartment"
-                    ? null
-                    : "apartment"
-                )
-              }
-            >
-
-              <div className="category-overlay">
-
-                <div className="category-icon">
-                  🏢
-                </div>
-
-                <h3>
-                  Apartment
-                </h3>
-
-              </div>
-
-            </div>
-
-            {activeCategory === "apartment" && (
-
-              <div className="property-popup active-popup">
-
-                <div className="popup-property">
-
-                  <img
-                    src={apartmentImg}
-                    alt=""
-                  />
-
-                  <h4>
-                    Luxury Apartment
-                  </h4>
-
-                  <p>
-                    $3,200/mo
-                  </p>
-
-                  <a href="#contact-section">
-                    Choose Property
-                  </a>
-
-                </div>
-
-              </div>
-
-            )}
-
-          </div>
-
-          {/* OFFICE */}
-
-          <div className="category-box">
-
-            <div
-              className="category-card"
-              style={{
-                backgroundImage: `url(${officeImg})`,
-              }}
-
-              onClick={() =>
-                setActiveCategory(
-                  activeCategory === "office"
-                    ? null
-                    : "office"
-                )
-              }
-            >
-
-              <div className="category-overlay">
-
-                <div className="category-icon">
-                  🏬
-                </div>
-
-                <h3>
-                  Office
-                </h3>
-
-              </div>
-
-            </div>
-
-            {activeCategory === "office" && (
-
-              <div className="property-popup active-popup">
-
-                <div className="popup-property">
-
-                  <img
-                    src={officeImg}
-                    alt=""
-                  />
-
-                  <h4>
-                    Business Office
-                  </h4>
-
-                  <p>
-                    $5,800/mo
-                  </p>
-
-                  <a href="#contact-section">
-                    Choose Property
-                  </a>
-
-                </div>
-
-              </div>
-
-            )}
-
-          </div>
-
-          {/* VILLA */}
-
-          <div className="category-box">
-
-            <div
-              className="category-card"
-              style={{
-                backgroundImage: `url(${villaImg})`,
-              }}
-
-              onClick={() =>
-                setActiveCategory(
-                  activeCategory === "villa"
-                    ? null
-                    : "villa"
-                )
-              }
-            >
-
-              <div className="category-overlay">
-
-                <div className="category-icon">
-                  🏡
-                </div>
-
-                <h3>
-                  Villa
-                </h3>
-
-              </div>
-
-            </div>
-
-            {activeCategory === "villa" && (
-
-              <div className="property-popup active-popup">
-
-                <div className="popup-property">
-
-                  <img
-                    src={villaImg}
-                    alt=""
-                  />
-
-                  <h4>
-                    Beach Villa
-                  </h4>
-
-                  <p>
-                    $8,500/mo
-                  </p>
-
-                  <a href="#contact-section">
-                    Choose Property
-                  </a>
-
-                </div>
-
-              </div>
-
-            )}
+            <a href="#contact-section">
+              Choose Property
+            </a>
 
           </div>
 
         </div>
 
-      </section>
+      )}
 
+    </div>
+
+    {/* APARTMENT */}
+
+    <div className="category-box">
+
+      <div
+        className="category-card"
+        style={{
+          backgroundImage: `url(${apartmentImg})`,
+        }}
+        onClick={() =>
+          setActiveCategory(
+            activeCategory === "apartment"
+              ? null
+              : "apartment"
+          )
+        }
+      >
+
+        <div className="category-overlay">
+
+          <div className="category-icon">
+            <FaBuilding />
+          </div>
+
+          <h3>
+            Apartment
+          </h3>
+
+        </div>
+
+      </div>
+
+      {activeCategory === "apartment" && (
+
+        <div className="property-popup active-popup">
+
+          <div className="popup-property">
+
+            <img
+              src={apartmentImg}
+              alt="Apartment"
+            />
+
+            <h4>
+              Luxury Apartment
+            </h4>
+
+            <p>
+              $3,200/mo
+            </p>
+
+            <a href="#contact-section">
+              Choose Property
+            </a>
+
+          </div>
+
+        </div>
+
+      )}
+
+    </div>
+
+    {/* OFFICE */}
+
+    <div className="category-box">
+
+      <div
+        className="category-card"
+        style={{
+          backgroundImage: `url(${officeImg})`,
+        }}
+        onClick={() =>
+          setActiveCategory(
+            activeCategory === "office"
+              ? null
+              : "office"
+          )
+        }
+      >
+
+        <div className="category-overlay">
+
+          <div className="category-icon">
+            <FaBriefcase />
+          </div>
+
+          <h3>
+            Office
+          </h3>
+
+        </div>
+
+      </div>
+
+      {activeCategory === "office" && (
+
+        <div className="property-popup active-popup">
+
+          <div className="popup-property">
+
+            <img
+              src={officeImg}
+              alt="Office"
+            />
+
+            <h4>
+              Business Office
+            </h4>
+
+            <p>
+              $5,800/mo
+            </p>
+
+            <a href="#contact-section">
+              Choose Property
+            </a>
+
+          </div>
+
+        </div>
+
+      )}
+
+    </div>
+
+    {/* VILLA */}
+
+    <div className="category-box">
+
+      <div
+        className="category-card"
+        style={{
+          backgroundImage: `url(${villaImg})`,
+        }}
+        onClick={() =>
+          setActiveCategory(
+            activeCategory === "villa"
+              ? null
+              : "villa"
+          )
+        }
+      >
+
+        <div className="category-overlay">
+
+          <div className="category-icon">
+            <FaHouseUser />
+          </div>
+
+          <h3>
+            Villa
+          </h3>
+
+        </div>
+
+      </div>
+
+      {activeCategory === "villa" && (
+
+        <div className="property-popup active-popup">
+
+          <div className="popup-property">
+
+            <img
+              src={villaImg}
+              alt="Villa"
+            />
+
+            <h4>
+              Beach Villa
+            </h4>
+
+            <p>
+              $8,500/mo
+            </p>
+
+            <a href="#contact-section">
+              Choose Property
+            </a>
+
+          </div>
+
+        </div>
+
+      )}
+
+    </div>
+
+  </div>
+
+</section>
       {/* ================= RECENT PROPERTIES ================= */}
 
 <section className="recent-section">

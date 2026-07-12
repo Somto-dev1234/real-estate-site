@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./signup.css";
 import { Link } from "react-router-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export default function Signup() {
 
@@ -14,6 +15,8 @@ export default function Signup() {
   });
 
   const [errors, setErrors] = useState({});
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleChange = (e) => {
     setForm({
@@ -49,9 +52,10 @@ export default function Signup() {
     else if (form.password.length < 8)
       newErrors.password = "Minimum 8 characters";
 
-    if (form.confirmPassword !== form.password)
-      newErrors.confirmPassword =
-        "Passwords do not match";
+    if (!form.confirmPassword)
+      newErrors.confirmPassword = "Please confirm your password";
+    else if (form.confirmPassword !== form.password)
+      newErrors.confirmPassword = "Passwords do not match";
 
     setErrors(newErrors);
 
@@ -68,6 +72,8 @@ export default function Signup() {
         confirmPassword: "",
       });
 
+      setShowPassword(false);
+      setShowConfirmPassword(false);
     }
 
   };
@@ -77,6 +83,13 @@ export default function Signup() {
     <div className="signup-page">
 
       <div className="signup-card">
+
+        <Link
+          to="/"
+          className="back-home"
+        >
+          ← Back to Home
+        </Link>
 
         <h2>Registration</h2>
 
@@ -130,25 +143,58 @@ export default function Signup() {
 
           <small>{errors.role}</small>
 
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={form.password}
-            onChange={handleChange}
-          />
+          {/* PASSWORD */}
+
+          <div className="input-group">
+
+            <input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              placeholder="Password"
+              value={form.password}
+              onChange={handleChange}
+            />
+
+            <span
+              className="password-toggle"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
+
+          </div>
+
           <small>{errors.password}</small>
 
-          <input
-            type="password"
-            name="confirmPassword"
-            placeholder="Re-enter password"
-            value={form.confirmPassword}
-            onChange={handleChange}
-          />
+          {/* CONFIRM PASSWORD */}
+
+          <div className="input-group">
+
+            <input
+              type={showConfirmPassword ? "text" : "password"}
+              name="confirmPassword"
+              placeholder="Re-enter Password"
+              value={form.confirmPassword}
+              onChange={handleChange}
+            />
+
+            <span
+              className="password-toggle"
+              onClick={() =>
+                setShowConfirmPassword(!showConfirmPassword)
+              }
+            >
+              {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
+
+          </div>
+
           <small>{errors.confirmPassword}</small>
 
-          <button>
+          <button
+            type="submit"
+            className="register-btn"
+          >
             Register
           </button>
 
